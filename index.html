@@ -1,258 +1,272 @@
 <!DOCTYPE html>
+
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wedding of Nabiel & Zaskia</title>
+<title>Wedding Nabiel & Zaskia</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-scroll-behavior:smooth;
-}
-
 body{
-background:#0d0d0d;
-color:#fff;
-font-family:'Montserrat', sans-serif;
+margin:0;
+font-family:'Poppins',sans-serif;
+background:#f7f4f2;
 overflow-x:hidden;
 }
 
-section{
-min-height:100vh;
-padding:40px 20px;
+/* COVER */
+.cover{
+height:100vh;
+background:
+linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),
+url("https://docs.google.com/uc?export=view&id=1b6tvFFAAfKwIuHIp6xOjSj7Z3KjwXIZh");
+background-size:cover;
+background-position:center;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-position:relative;
+color:white;
+padding:20px;
 }
 
-h1,h2,h3{
-font-family:'Cormorant Garamond', serif;
-letter-spacing:1px;
+.cover h1{
+font-family:'Great Vibes',cursive;
+font-size:40px;
+margin-bottom:15px;
+animation:fadeIn 2s;
 }
 
-.gold{
-background:linear-gradient(45deg,#d4af37,#f7e7a1,#c9a227);
--webkit-background-clip:text;
-color:transparent;
-text-shadow:0 0 15px rgba(212,175,55,0.5);
-}
-
-.cover{
-background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
-url('https://drive.google.com/uc?export=view&id=1b6tvFFAAfKwIuHIp6xOjSj7Z3KjwXIZh');
-background-size:cover;
-background-position:center;
-}
-
-.cover-box{
-border:1px solid rgba(212,175,55,0.5);
-padding:40px 20px;
-border-radius:20px;
-backdrop-filter:blur(8px);
-animation:fadeUp 2s ease;
-}
-
-button{
-padding:12px 30px;
-margin-top:20px;
-border-radius:30px;
-border:1px solid #d4af37;
-background:transparent;
-color:#d4af37;
+.cover p{
 font-size:14px;
+animation:fadeIn 3s;
+}
+
+.open-btn{
+margin-top:25px;
+padding:12px 30px;
+border:none;
+border-radius:30px;
+background:#d4b59e;
+color:white;
+font-size:16px;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
 cursor:pointer;
-transition:0.4s;
+animation:fadeIn 4s;
 }
 
-button:hover{
-background:#d4af37;
-color:#000;
-box-shadow:0 0 20px #d4af37;
-}
-
-.hidden{
+/* MAIN */
+#main{
 display:none;
+animation:fadeIn 1.5s;
 }
 
-.fade{
-opacity:0;
-transform:translateY(40px);
-transition:1.2s;
+.section{
+padding:50px 20px;
+text-align:center;
+animation:fadeUp 1.5s;
 }
 
-.fade.show{
-opacity:1;
-transform:translateY(0);
-}
-
+/* BACKGROUND PREWED */
 .prewed{
-background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.9)),
-url('https://drive.google.com/uc?export=view&id=1b6tvFFAAfKwIuHIp6xOjSj7Z3KjwXIZh');
+background:
+linear-gradient(rgba(255,255,255,0.85),rgba(255,255,255,0.9)),
+url("https://docs.google.com/uc?export=view&id=1b6tvFFAAfKwIuHIp6xOjSj7Z3KjwXIZh");
 background-size:cover;
 background-position:center;
+}
+
+.title{
+font-family:'Great Vibes',cursive;
+font-size:30px;
+margin-bottom:10px;
 }
 
 .timer{
+font-size:20px;
+margin-top:10px;
+}
+
+.btn{
+display:inline-block;
 margin-top:20px;
-font-size:18px;
-color:#d4af37;
+padding:10px 25px;
+background:#d4b59e;
+color:white;
+border-radius:25px;
+text-decoration:none;
 }
 
+/* Guestbook */
 input,textarea{
-width:90%;
+width:100%;
 padding:10px;
-margin:8px 0;
-border-radius:10px;
-border:1px solid #d4af37;
-background:rgba(0,0,0,0.5);
-color:#fff;
+margin-top:10px;
+border-radius:8px;
+border:1px solid #ccc;
 }
 
-audio{display:none;}
+.guest-list{
+text-align:left;
+margin-top:20px;
+font-size:14px;
+}
+
+/* Animations */
+@keyframes fadeIn{
+from{opacity:0}
+to{opacity:1}
+}
 
 @keyframes fadeUp{
-from{opacity:0; transform:translateY(30px);}
-to{opacity:1; transform:translateY(0);}
+from{opacity:0;transform:translateY(30px)}
+to{opacity:1;transform:translateY(0)}
 }
 </style>
-</head>
 
+</head>
 <body>
 
-<audio id="music" loop>
-<source src="https://drive.google.com/uc?export=download&id=1LmAQ_VeSqAIKP5BVmETLdxofOY1TbHRG">
+<!-- MUSIC -->
+
+<audio id="music" loop preload="auto">
+<source src="https://docs.google.com/uc?export=open&id=1LmAQ_VeSqAIKP5BVmETLdxofOY1TbHRG" type="audio/mp3">
 </audio>
 
 <!-- COVER -->
-<section class="cover" id="cover">
-<div class="cover-box">
-<h1 class="gold">Wedding of</h1>
-<h1 class="gold">Nabiel & Zaskia</h1>
-<br>
-<p>Yth kepada Bapak/I/Saudara/I<br>Seluruh Dewan Tamu Undangan</p>
-<button onclick="openInvite()">Buka Undangan</button>
+
+<div class="cover" id="cover">
+<h1>Wedding of<br>Nabiel & Zaskia</h1>
+<p>Yth kepada Bapak/I/Saudara/I:<br>
+Seluruh Dewan Tamu Undangan</p>
+<button class="open-btn" onclick="openInvitation()">Buka Undangan</button>
 </div>
-</section>
 
-<div id="main" class="hidden">
+<!-- MAIN CONTENT -->
 
-<section class="fade">
-<p class="gold">
-"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan pasangan hidup..."
-<br>(QS. Ar-Rum:21)
-</p>
-</section>
+<div id="main">
 
-<section class="fade">
-<p>
-Mohon doa restu<br>
-semoga anugerah dan rahmat Allah SWT<br>
-menuntun bahtera pernikahan kami
-</p>
-</section>
+<div class="section">
+<p><i>"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan pasangan untukmu agar kamu cenderung dan merasa tenteram kepadanya." (QS. Ar-Rum:21)</i></p>
+</div>
 
-<section class="prewed fade">
-<h2 class="gold">Mempelai Pria</h2>
-<p>Muhammad Nabiel<br>
-Putra dari<br>
-Bapak Nanda Adrian Sinuhaji<br>
-& Ibu Salma Setia Ningrum</p>
+<div class="section prewed">
+<p>Mohon doa restu<br>
+Semoga rahmat Allah SWT senantiasa menuntun pernikahan kami:</p>
 
-<br><br>
+<div class="title">Muhammad Nabiel</div>
+<p>Putra dari<br>
+Bapak Nanda Adrian Sinuhaji & Ibu Salma Setia Ningrum</p>
 
-<h2 class="gold">Mempelai Wanita</h2>
-<p>Zaskia Putri Levina<br>
-Putri dari<br>
-Bapak Nabil Basalamah<br>
-& Ibu Nina Maulida</p>
-</section>
+<br>
 
-<section class="fade">
-<h2 class="gold">Akad Nikah</h2>
+<div class="title">Zaskia Putri Levina</div>
+<p>Putri dari<br>
+Bapak Nabil Basalamah & Ibu Nina Maulida</p>
+</div>
+
+<div class="section">
+<h3>Akad Nikah</h3>
 <p>Kamis, 26 Februari 2026<br>
 10.00 WIB - Selesai<br>
 Ruang Meeting SMK</p>
 
 <div class="timer" id="countdown"></div>
 
-<button onclick="window.open('https://maps.app.goo.gl/pK1mcgumzWdwQYDV9')">
-Google Maps
-</button>
-</section>
+<a class="btn" href="https://maps.app.goo.gl/pK1mcgumzWdwQYDV9" target="_blank">Google Maps</a>
 
-<section class="fade">
-<h2 class="gold">Buku Tamu</h2>
-<input id="nama" placeholder="Nama">
-<textarea id="ucapan" placeholder="Ucapan & Doa"></textarea>
-<button onclick="kirim()">Kirim</button>
-<div id="list"></div>
-</section>
+</div>
 
-<section class="fade">
-<h2 class="gold">Terima Kasih</h2>
-<p>Merupakan kehormatan bagi kami atas kehadiran dan doa restu Anda</p>
-</section>
+<div class="section">
+<h3>Buku Tamu</h3>
+<input id="name" placeholder="Nama">
+<textarea id="message" placeholder="Ucapan & Doa"></textarea>
+<button class="btn" onclick="saveGuest()">Kirim</button>
+
+<div class="guest-list" id="guestList"></div>
+</div>
+
+<div class="section">
+<h2>Terima Kasih</h2>
+<p>Atas doa dan kehadirannya</p>
+</div>
 
 </div>
 
 <script>
-function openInvite(){
+let autoScrollActive = true;
+
+/* OPEN INVITATION */
+function openInvitation(){
 document.getElementById("cover").style.display="none";
-document.getElementById("main").classList.remove("hidden");
-document.getElementById("music").play();
+document.getElementById("main").style.display="block";
+
+/* Play music (anti-block browser) */
+let music = document.getElementById("music");
+music.play().catch(()=>{});
+
+/* AUTO SCROLL */
 autoScroll();
-showFade();
 }
 
+/* Auto scroll function */
 function autoScroll(){
-let y=0;
-let h=document.body.scrollHeight;
-let i=setInterval(()=>{
-y+=1;
-window.scrollTo(0,y);
-if(y>=h) clearInterval(i);
-},40);
+let speed = 0.4;
+let scroll = setInterval(()=>{
+if(!autoScrollActive) { clearInterval(scroll); return; }
+
+window.scrollBy(0, speed);
+
+if((window.innerHeight + window.scrollY) >= document.body.offsetHeight){
+autoScrollActive = false; // stop at end
+clearInterval(scroll);
+}
+},20);
 }
 
-function showFade(){
-let f=document.querySelectorAll(".fade");
-window.addEventListener("scroll",()=>{
-f.forEach(el=>{
-if(el.getBoundingClientRect().top < window.innerHeight-80){
-el.classList.add("show");
-}
-});
-});
-}
+/* Stop auto if user scroll manually */
+window.addEventListener("touchstart",()=>{autoScrollActive=false;});
+window.addEventListener("wheel",()=>{autoScrollActive=false;});
 
-let countDate = new Date("Feb 26, 2026 10:00:00").getTime();
+/* COUNTDOWN */
+let target = new Date("Feb 26, 2026 10:00:00").getTime();
 setInterval(()=>{
-let now=new Date().getTime();
-let d=countDate-now;
-let days=Math.floor(d/(1000*60*60*24));
-let hours=Math.floor((d%(1000*60*60*24))/(1000*60*60));
-let minutes=Math.floor((d%(1000*60*60))/(1000*60));
-let seconds=Math.floor((d%(1000*60))/1000);
-document.getElementById("countdown").innerHTML=
-days+" Hari "+hours+" Jam "+minutes+" Menit "+seconds+" Detik";
+let now = new Date().getTime();
+let diff = target - now;
+
+let d = Math.floor(diff/(1000*60*60*24));
+let h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+let m = Math.floor((diff%(1000*60*60))/(1000*60));
+let s = Math.floor((diff%(1000*60))/1000);
+
+document.getElementById("countdown").innerHTML =
+d+" Hari "+h+" Jam "+m+" Menit "+s+" Detik";
 },1000);
 
-function kirim(){
-let n=document.getElementById("nama").value;
-let u=document.getElementById("ucapan").value;
-if(n && u){
-document.getElementById("list").innerHTML+=
-"<p style='margin-top:5px;color:#d4af37'><b>"+n+"</b>: "+u+"</p>";
+/* Guestbook local */
+function saveGuest(){
+let name = document.getElementById("name").value;
+let message = document.getElementById("message").value;
+if(name=="") return;
+
+let data = JSON.parse(localStorage.getItem("guests")||"[]");
+data.push({name,message});
+localStorage.setItem("guests",JSON.stringify(data));
+showGuests();
 }
+
+function showGuests(){
+let data = JSON.parse(localStorage.getItem("guests")||"[]");
+let html="";
+data.forEach(g=>{
+html += "<p><b>"+g.name+"</b><br>"+g.message+"</p><hr>";
+});
+document.getElementById("guestList").innerHTML = html;
 }
+showGuests();
 </script>
 
 </body>
