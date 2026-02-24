@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Nabiel & Zaskia</title>
+
+<style>
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    overflow-x:hidden;
+    background:#f8f6f3;
+}
+
+/* Cover */
+.cover{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:linear-gradient(135deg,#f5e6d8,#ffffff);
+}
+
+.cover h1{
+    font-size:30px;
+}
+
+.btn{
+    padding:15px 30px;
+    background:#c8a97e;
+    color:white;
+    border:none;
+    border-radius:30px;
+    margin-top:20px;
+}
+
+/* Section */
+.section{
+    min-height:100vh;
+    padding:40px 20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+}
+
+/* Prewed */
+.prewed{
+    background:url('https://drive.google.com/uc?export=view&id=1b6tvFFAAfKwIuHIp6xOjSj7Z3KjwXIZh') center/cover no-repeat;
+    color:white;
+}
+.prewed::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.5);
+}
+.prewed *{position:relative;}
+
+/* Countdown */
+.countdown{
+    font-size:22px;
+    margin-top:10px;
+}
+
+/* Maps */
+.maps{
+    margin-top:20px;
+    padding:12px 25px;
+    background:#c8a97e;
+    color:white;
+    text-decoration:none;
+    border-radius:25px;
+}
+
+/* Flower */
+.flower{
+    position:fixed;
+    top:-50px;
+    font-size:20px;
+    animation:fall linear infinite;
+}
+@keyframes fall{
+    to{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* Guest form */
+iframe{
+    width:100%;
+    height:500px;
+    border:none;
+}
+</style>
+
+</head>
+
+<body>
+
+<audio id="music" loop>
+<source src="MUSIK_LINK_KAMU">
+</audio>
+
+<div class="cover" id="cover">
+    <h1>Wedding of<br>Nabiel & Zaskia</h1>
+    <p>Yth Bapak/Ibu/Saudara/i</p>
+    <button class="btn" onclick="start()">Buka Undangan</button>
+</div>
+
+<div id="content" style="display:none">
+
+<div class="section">
+<p>
+"Dan di antara tanda-tanda kekuasaan-Nya Dia menciptakan pasangan untukmu agar kamu merasa tenteram, dan dijadikan-Nya kasih dan sayang di antara kamu."<br>
+(QS. Ar-Rum:21)
+</p>
+</div>
+
+<div class="section prewed">
+<p>Mohon doa restu untuk pernikahan kami:</p>
+
+<h3>Muhammad Nabiel</h3>
+<p>Putra dari Bapak Nanda Adrian Sinuhaji & Ibu Salma Setia Ningrum</p>
+
+<p>dan</p>
+
+<h3>Zaskia Putri Levina</h3>
+<p>Putri dari Bapak Nabil Basalamah & Ibu Nina Maulida</p>
+</div>
+
+<div class="section">
+<h2>Akad Nikah</h2>
+<p>Kamis, 26 Februari 2026<br>
+10:00 WIB - Selesai<br>
+Ruang Meeting SMK</p>
+
+<div class="countdown" id="countdown"></div>
+
+<a class="maps" href="https://www.google.com/maps?q=-6.310409,107.087168" target="_blank">
+Buka Lokasi
+</a>
+</div>
+
+<div class="section">
+<h2>Buku Tamu</h2>
+<iframe src="FORM_LINK"></iframe>
+</div>
+
+<div class="section">
+<p>Terima kasih atas doa dan kehadirannya.</p>
+</div>
+
+</div>
+
+<script>
+function start(){
+    document.getElementById("cover").style.display="none";
+    document.getElementById("content").style.display="block";
+    document.getElementById("music").play();
+    autoScroll();
+}
+
+/* Auto scroll cinematic */
+function autoScroll(){
+    setInterval(()=>{
+        window.scrollBy(0,0.5);
+    },10);
+}
+
+/* Countdown */
+let target = new Date("Feb 26, 2026 10:00:00").getTime();
+setInterval(()=>{
+    let now = new Date().getTime();
+    let d = target-now;
+    let days=Math.floor(d/(1000*60*60*24));
+    let h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+    let m=Math.floor((d%(1000*60*60))/(1000*60));
+    document.getElementById("countdown").innerHTML=
+    days+" Hari "+h+" Jam "+m+" Menit";
+},1000);
+
+/* Flower animation */
+function flower(){
+    let f=document.createElement("div");
+    f.className="flower";
+    f.innerHTML="🌸";
+    f.style.left=Math.random()*100+"vw";
+    f.style.animationDuration=(5+Math.random()*5)+"s";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),10000);
+}
+setInterval(flower,500);
+</script>
+
+</body>
+</html>
