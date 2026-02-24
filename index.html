@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Wedding of Nabiel & Zaskia</title>
+    <style>
+      :root {
+        --bg-dark: #140f1e;
+        --bg-soft: #241a36;
+        --gold: #f8d58f;
+        --cream: #fff7e8;
+        --pink: #f5c6d0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: radial-gradient(circle at top, #2c2142 0%, #0f0c18 70%);
+        color: var(--cream);
+        font-family: "Poppins", "Segoe UI", sans-serif;
+        overflow-x: hidden;
+      }
+
+      .cover {
+        position: fixed;
+        inset: 0;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: linear-gradient(160deg, #1f1530, #0b0913);
+        transition: opacity 1s ease, visibility 1s ease;
+      }
+
+      .cover.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .cover-card {
+        width: min(92vw, 420px);
+        min-height: 72vh;
+        border-radius: 30px;
+        padding: 28px 20px;
+        background: linear-gradient(170deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
+        border: 1px solid rgba(248, 213, 143, 0.5);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 24px 40px rgba(0, 0, 0, 0.45);
+        transform-style: preserve-3d;
+        transform: perspective(900px) rotateX(8deg);
+        text-align: center;
+        display: grid;
+        align-content: center;
+        gap: 16px;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: 2rem;
+        color: var(--gold);
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      }
+
+      .subtitle {
+        font-size: 0.92rem;
+        line-height: 1.7;
+      }
+
+      .open-btn,
+      .maps-btn,
+      .guestbook button {
+        border: none;
+        border-radius: 999px;
+        padding: 12px 22px;
+        background: linear-gradient(90deg, #e7b85f, #ffd48f);
+        color: #311d02;
+        font-weight: 700;
+        font-size: 0.95rem;
+        cursor: pointer;
+        box-shadow: 0 10px 25px rgba(231, 184, 95, 0.35);
+      }
+
+      main {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: all 0.8s ease;
+        pointer-events: none;
+      }
+
+      main.visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .slide {
+        min-height: 100vh;
+        width: 100%;
+        padding: 28px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .panel {
+        width: min(95vw, 430px);
+        border-radius: 24px;
+        padding: 24px 18px;
+        background: rgba(16, 13, 25, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(6px);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+        text-align: center;
+        transform: perspective(1200px) rotateX(6deg);
+      }
+
+      .prewed {
+        background-image: linear-gradient(rgba(20, 13, 33, 0.74), rgba(20, 13, 33, 0.74)),
+          url("https://drive.google.com/uc?export=view&id=1b6tvFFAAfKwIuHIp6xOjSj7Z3KjwXIZh");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .animate {
+        opacity: 0;
+        transform: translateY(24px) scale(0.98);
+        transition: all 0.8s ease;
+      }
+
+      .animate.show {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      .quran {
+        font-style: italic;
+        line-height: 1.75;
+        font-size: 0.95rem;
+      }
+
+      .names {
+        line-height: 1.7;
+        font-size: 0.95rem;
+      }
+
+      .event-detail {
+        line-height: 1.8;
+      }
+
+      #countdown {
+        margin-top: 12px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+      }
+
+      #countdown div {
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+        padding: 10px 4px;
+      }
+
+      #countdown strong {
+        display: block;
+        font-size: 1.15rem;
+        color: var(--gold);
+      }
+
+      .guestbook {
+        display: grid;
+        gap: 10px;
+        text-align: left;
+      }
+
+      .guestbook input,
+      .guestbook textarea {
+        width: 100%;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.08);
+        color: white;
+        padding: 10px;
+        font-size: 0.92rem;
+      }
+
+      .guestbook textarea {
+        min-height: 88px;
+        resize: vertical;
+      }
+
+      #messages {
+        margin-top: 12px;
+        display: grid;
+        gap: 8px;
+      }
+
+      .message-item {
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 10px;
+      }
+
+      .thanks {
+        font-size: 1.2rem;
+        color: var(--pink);
+      }
+    </style>
+  </head>
+  <body>
+    <section class="cover" id="cover">
+      <div class="cover-card animate show">
+        <h1>Wedding of Nabiel &amp; Zaskia</h1>
+        <p class="subtitle">
+          Yth kepada Bapak/i/Saudara/i:<br />
+          Seluruh Dewan Tamu Undangan
+        </p>
+        <button class="open-btn" id="openInvitation">Buka Undangan</button>
+      </div>
+    </section>
+
+    <main id="invitation">
+      <section class="slide prewed">
+        <div class="panel">
+          <p class="quran animate">
+            “Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari
+            jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu
+            rasa kasih dan sayang.”<br />(QS. Ar-Rum: 21)
+          </p>
+          <p class="names animate" style="margin-top: 16px;">
+            Mohon do'a restu<br />
+            semoga anugerah dan rahmat Allah SWT. senantiasa tercurah dan menuntun bahtera hidup pernikahan kami:
+          </p>
+          <p class="names animate" style="margin-top: 16px;">
+            Mempelai Pria<br />
+            <strong>Muhammad Nabiel</strong><br />
+            Putra dari<br />
+            Bapak Nanda Adrian Sinuhaji dan Ibu Salma Setia Ningrum<br />
+            dan<br />
+            Mempelai Perempuan<br />
+            <strong>Zaskia Putri Levina</strong><br />
+            Putri dari<br />
+            Bapak Nabil Basalamah dan Ibu Nina Maulida
+          </p>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="panel">
+          <h2 class="animate">Akad Nikah</h2>
+          <p class="event-detail animate" style="margin-top: 10px;">
+            Kamis, 26 Februari 2026<br />
+            Jam 10:00 - selesai<br />
+            Lokasi: Ruang Meeting SMK
+          </p>
+          <div id="countdown" class="animate">
+            <div><strong id="day">0</strong><span>Hari</span></div>
+            <div><strong id="hour">0</strong><span>Jam</span></div>
+            <div><strong id="minute">0</strong><span>Menit</span></div>
+            <div><strong id="second">0</strong><span>Detik</span></div>
+          </div>
+          <button class="maps-btn animate" id="mapsBtn" style="margin-top: 14px;">Buka Google Maps</button>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="panel">
+          <h3 class="animate">Buku Tamu & Ucapan</h3>
+          <form class="guestbook animate" id="guestbookForm" style="margin-top: 12px;">
+            <input id="guestName" placeholder="Nama tamu" required />
+            <textarea id="guestWish" placeholder="Tulis ucapan dan doa terbaik" required></textarea>
+            <button type="submit">Kirim Ucapan</button>
+          </form>
+          <div id="messages"></div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="panel">
+          <p class="thanks animate">Terima kasih atas doa, restu, dan kehadirannya.</p>
+        </div>
+      </section>
+    </main>
+
+    <audio id="bgMusic" loop>
+      <source src="https://cdn.pixabay.com/download/audio/2022/01/20/audio_979f2270d0.mp3?filename=romantic-piano-113193.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script>
+      const cover = document.getElementById("cover");
+      const invitation = document.getElementById("invitation");
+      const openBtn = document.getElementById("openInvitation");
+      const music = document.getElementById("bgMusic");
+      const mapsBtn = document.getElementById("mapsBtn");
+
+      function revealOnView() {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+              }
+            });
+          },
+          { threshold: 0.25 }
+        );
+
+        document.querySelectorAll(".animate").forEach((el) => io.observe(el));
+      }
+
+      function updateCountdown() {
+        const target = new Date("2026-02-26T10:00:00+07:00").getTime();
+        const now = Date.now();
+        const distance = Math.max(0, target - now);
+
+        const day = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hour = Math.floor((distance / (1000 * 60 * 60)) % 24);
+        const minute = Math.floor((distance / (1000 * 60)) % 60);
+        const second = Math.floor((distance / 1000) % 60);
+
+        document.getElementById("day").textContent = day;
+        document.getElementById("hour").textContent = hour;
+        document.getElementById("minute").textContent = minute;
+        document.getElementById("second").textContent = second;
+      }
+
+      setInterval(updateCountdown, 1000);
+      updateCountdown();
+
+      mapsBtn.addEventListener("click", () => {
+        window.open("https://www.google.com/maps?q=-6.310409,107.087168", "_blank");
+      });
+
+      const form = document.getElementById("guestbookForm");
+      const messageList = document.getElementById("messages");
+
+      function renderMessages() {
+        const messages = JSON.parse(localStorage.getItem("guestMessages") || "[]");
+        messageList.innerHTML = messages
+          .map(
+            (item) => `<div class="message-item"><strong>${item.name}</strong><p>${item.wish}</p></div>`
+          )
+          .join("");
+      }
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("guestName").value.trim();
+        const wish = document.getElementById("guestWish").value.trim();
+        if (!name || !wish) return;
+
+        const messages = JSON.parse(localStorage.getItem("guestMessages") || "[]");
+        messages.unshift({ name, wish });
+        localStorage.setItem("guestMessages", JSON.stringify(messages.slice(0, 30)));
+        form.reset();
+        renderMessages();
+      });
+
+      renderMessages();
+      revealOnView();
+
+      let scrolling = false;
+      function autoScrollToEnd() {
+        if (scrolling) return;
+        scrolling = true;
+        const speed = 0.6;
+
+        const tick = () => {
+          const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 2;
+          if (atBottom) {
+            scrolling = false;
+            return;
+          }
+          window.scrollBy(0, speed);
+          requestAnimationFrame(tick);
+        };
+
+        requestAnimationFrame(tick);
+      }
+
+      openBtn.addEventListener("click", async () => {
+        cover.classList.add("hidden");
+        invitation.classList.add("visible");
+        try {
+          await music.play();
+        } catch (error) {
+          console.warn("Autoplay audio diblokir browser.");
+        }
+        setTimeout(autoScrollToEnd, 700);
+      });
+    </script>
+  </body>
+</html>
