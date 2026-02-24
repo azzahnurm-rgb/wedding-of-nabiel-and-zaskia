@@ -4,210 +4,272 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wedding Nabiel & Zaskia</title>
+<title>Wedding of Nabiel & Zaskia</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<!-- Font Aesthetic -->
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
-body{
+*{
 margin:0;
-background:#eee;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
 font-family:'Poppins',sans-serif;
-display:flex;
-justify-content:center;
+background:#f7f3ef;
+color:#333;
+overflow-x:hidden;
 }
 
-/* MOBILE FRAME */
-.container{
-width:100%;
-max-width:430px;
-background:white;
-min-height:100vh;
-overflow:hidden;
-}
-
-/* COVER */
+/* Cover */
 .cover{
 height:100vh;
-background:
-linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),
-url("https://images.unsplash.com/photo-1520857014576-2c4f4c972b57");
-background-size:cover;
-background-position:center;
-color:white;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
+background:linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)),
+url('https://drive.google.com/uc?export=view&id=1b6tvFFAAfKwIuHIp6xOjSj7Z3KjwXIZh');
+background-size:cover;
+background-position:center;
+color:white;
 padding:20px;
 }
 
 .cover h1{
 font-family:'Great Vibes',cursive;
-font-size:38px;
+font-size:40px;
 margin-bottom:10px;
+animation:fadeUp 1.5s ease;
+}
+
+.cover p{
+margin:5px 0;
+animation:fadeUp 2s ease;
 }
 
 .btn{
-padding:12px 28px;
-background:#d4b59e;
+margin-top:20px;
+padding:12px 30px;
+background:#e6c9a8;
 border:none;
 border-radius:30px;
-color:white;
 font-size:16px;
-margin-top:20px;
+cursor:pointer;
+animation:fadeUp 2.5s ease;
 }
 
-/* CONTENT */
-#main{display:none;}
-
+/* Section */
 .section{
+min-height:100vh;
 padding:40px 20px;
+display:flex;
+flex-direction:column;
+justify-content:center;
 text-align:center;
+position:relative;
 }
 
-.prewed{
-background:
-linear-gradient(rgba(255,255,255,0.85),rgba(255,255,255,0.9)),
-url("https://images.unsplash.com/photo-1519741497674-611481863552");
+.bg-photo{
+background:linear-gradient(rgba(255,255,255,0.75),rgba(255,255,255,0.85)),
+url('https://drive.google.com/uc?export=view&id=1b6tvFFAAfKwIuHIp6xOjSj7Z3KjwXIZh');
 background-size:cover;
 background-position:center;
 }
 
-.title{
+h2{
+font-family:'Playfair Display',serif;
+margin-bottom:15px;
+animation:fadeUp 1.5s ease;
+}
+
+.arab{
+font-style:italic;
+margin-bottom:20px;
+animation:fadeUp 2s ease;
+}
+
+.nama{
 font-family:'Great Vibes',cursive;
 font-size:28px;
+margin:10px 0;
 }
 
-.timer{
-font-size:18px;
-margin-top:10px;
-}
-
-.map-btn{
-display:inline-block;
+/* Countdown */
+.countdown{
+font-size:20px;
 margin-top:15px;
-padding:10px 20px;
-background:#d4b59e;
-color:white;
-border-radius:20px;
+}
+
+/* Maps Button */
+.maps{
+margin-top:20px;
+display:inline-block;
+padding:10px 25px;
+background:#e6c9a8;
+border-radius:25px;
 text-decoration:none;
+color:black;
 }
 
 /* Guestbook */
-input,textarea{
+input, select, textarea{
 width:100%;
+margin:5px 0;
 padding:10px;
-margin-top:10px;
 border-radius:8px;
 border:1px solid #ccc;
+}
+
+textarea{height:80px;}
+
+.submit{
+background:#e6c9a8;
+border:none;
+padding:10px;
+margin-top:10px;
+}
+
+/* Animations */
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(30px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+/* Hidden main */
+#main{
+display:none;
 }
 </style>
 
 </head>
 <body>
 
-<div class="container">
-
-<!-- MUSIC -->
+<!-- Music -->
 
 <audio id="music" loop>
-<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+<source src="https://drive.google.com/uc?export=download&id=1LmAQ_VeSqAIKP5BVmETLdxofOY1TbHRG" type="audio/mp3">
 </audio>
 
 <!-- COVER -->
 
-<div class="cover" id="cover">
+<div class="cover">
 <h1>Wedding of<br>Nabiel & Zaskia</h1>
-<p>Yth kepada Bapak/I/Saudara/I<br>Seluruh Dewan Tamu Undangan</p>
-<button class="btn" onclick="openInvitation()">Buka Undangan</button>
+<p>Yth kepada Bapak/I/Saudara/I:</p>
+<p><b>Seluruh Dewan Tamu Undangan</b></p>
+<button class="btn" onclick="openInvite()">Buka Undangan</button>
 </div>
 
-<!-- MAIN -->
+<!-- MAIN CONTENT -->
 
 <div id="main">
 
-<div class="section">
-<p><i>QS. Ar-Rum:21 — Allah menciptakan pasangan agar hidup tenteram.</i></p>
-</div>
+<!-- Ayat -->
 
-<div class="section prewed">
-<div class="title">Muhammad Nabiel</div>
-<p>Putra dari<br>Bapak Nanda Adrian Sinuhaji & Ibu Salma Setia Ningrum</p>
+<section class="section">
+<h2>QS. Ar-Rum : 21</h2>
+<p class="arab">
+"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup..."
+</p>
+<p>Mohon do'a restu<br>
+semoga anugerah dan rahmat Allah SWT senantiasa tercurah dan menuntun bahtera hidup pernikahan kami:</p>
+</section>
 
-<br>
+<!-- Mempelai -->
 
-<div class="title">Zaskia Putri Levina</div>
-<p>Putri dari<br>Bapak Nabil Basalamah & Ibu Nina Maulida</p>
-</div>
+<section class="section bg-photo">
+<h2>Mempelai Pria</h2>
+<div class="nama">Muhammad Nabiel</div>
+<p>Putra dari<br>Bapak Nanda Adrian Sinuhaji<br>&<br>Ibu Salma Setia Ningrum</p>
 
-<div class="section">
-<h3>Akad Nikah</h3>
-<p>Kamis, 26 Februari 2026<br>
-10:00 WIB - Selesai<br>
-Ruang Meeting SMK</p>
+<br><br>
 
-<div class="timer" id="countdown"></div>
+<h2>Mempelai Perempuan</h2>
+<div class="nama">Zaskia Putri Levina</div>
+<p>Putri dari<br>Bapak Nabil Basalamah<br>&<br>Ibu Nina Maulida</p>
+</section>
 
-<a class="map-btn" href="https://maps.app.goo.gl/pK1mcgumzWdwQYDV9" target="_blank">Google Maps</a>
+<!-- Acara -->
 
-</div>
+<section class="section">
+<h2>Akad Nikah</h2>
+<p>Kamis, 26 Februari 2026</p>
+<p>10:00 WIB - Selesai</p>
+<p>Ruang Meeting SMK</p>
 
-<div class="section">
-<h3>Terima Kasih</h3>
-<p>Atas doa dan kehadirannya</p>
-</div>
+<div class="countdown" id="countdown"></div>
 
-</div>
+<a class="maps" href="https://maps.app.goo.gl/pK1mcgumzWdwQYDV9" target="_blank">Buka Google Maps</a>
+
+</section>
+
+<!-- Guestbook -->
+
+<section class="section">
+<h2>Buku Tamu & RSVP</h2>
+<input type="text" placeholder="Nama Anda">
+<select>
+<option>Hadir</option>
+<option>Tidak Hadir</option>
+<option>Ragu-ragu</option>
+</select>
+<textarea placeholder="Ucapan & Doa"></textarea>
+<button class="submit">Kirim</button>
+</section>
+
+<!-- Thank You -->
+
+<section class="section">
+<h2>Terima Kasih</h2>
+<p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/I/Saudara/I berkenan hadir dan memberikan doa restu.</p>
+<p><br>Wassalamu’alaikum Warahmatullahi Wabarakatuh</p>
+</section>
+
 </div>
 
 <script>
-let autoScrollRunning = true;
+// Open invitation
+function openInvite(){
+document.querySelector('.cover').style.display='none';
+document.getElementById('main').style.display='block';
 
-function openInvitation(){
-document.getElementById("cover").style.display="none";
-document.getElementById("main").style.display="block";
-
-/* PLAY MUSIC (works because user clicked) */
-let music = document.getElementById("music");
-music.volume = 0.5;
+// play music
+var music=document.getElementById("music");
 music.play();
 
-/* AUTO SCROLL */
-let scrollSpeed = 1;
-let auto = setInterval(()=>{
-if(!autoScrollRunning){
-clearInterval(auto);
-return;
-}
-window.scrollBy(0, scrollSpeed);
-
-if(window.innerHeight + window.scrollY >= document.body.scrollHeight){
-autoScrollRunning = false;
-clearInterval(auto);
-}
-},20);
+// auto scroll
+autoScroll();
 }
 
-/* Stop auto if user scroll */
-window.addEventListener("touchstart", ()=> autoScrollRunning=false);
-window.addEventListener("wheel", ()=> autoScrollRunning=false);
+// Countdown
+var targetDate = new Date("Feb 26, 2026 10:00:00").getTime();
+var x = setInterval(function(){
+var now = new Date().getTime();
+var distance = targetDate - now;
 
-/* COUNTDOWN */
-let target = new Date("Feb 26, 2026 10:00:00").getTime();
-setInterval(()=>{
-let now = new Date().getTime();
-let diff = target - now;
-
-let d = Math.floor(diff/(1000*60*60*24));
-let h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-let m = Math.floor((diff%(1000*60*60))/(1000*60));
-let s = Math.floor((diff%(1000*60))/1000);
+var days = Math.floor(distance/(1000*60*60*24));
+var hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+var minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+var seconds = Math.floor((distance%(1000*60))/1000);
 
 document.getElementById("countdown").innerHTML =
-d+" Hari "+h+" Jam "+m+" Menit "+s+" Detik";
+days+" Hari "+hours+" Jam "+minutes+" Menit "+seconds+" Detik";
 },1000);
+
+// Auto scroll function
+function autoScroll(){
+let speed = 0.2;
+function scrollStep(){
+window.scrollBy(0, speed);
+requestAnimationFrame(scrollStep);
+}
+scrollStep();
+}
 </script>
 
 </body>
