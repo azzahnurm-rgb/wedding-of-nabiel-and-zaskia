@@ -1,198 +1,261 @@
 <!DOCTYPE html>
-
 <html lang="id">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wedding Nabiel & Zaskia</title>
+<title>Wedding of Nabiel & Zaskia</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
+*{margin:0;padding:0;box-sizing:border-box;}
 body{
-    margin:0;
-    font-family:'Segoe UI',sans-serif;
-    overflow-x:hidden;
-    background:#f8f6f3;
+  font-family:'Poppins',sans-serif;
+  background:#000;
+  overflow:hidden;
+}
+.app{
+  max-width:420px;
+  margin:auto;
+  height:100vh;
+  position:relative;
+  overflow:hidden;
+  background:#fff;
 }
 
-/* Cover */
+/* COVER */
 .cover{
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    background:linear-gradient(135deg,#f5e6d8,#ffffff);
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(135deg,#e9d8c9,#f8f5f2);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:30px;
+  transform-origin:left;
+  transition:1.3s ease;
+  z-index:10;
 }
-
-.cover h1{
-    font-size:30px;
+.cover.open{
+  transform:rotateY(-100deg);
 }
-
+.script{
+  font-family:'Great Vibes',cursive;
+  font-size:40px;
+}
+.title{
+  font-family:'Playfair Display',serif;
+  font-size:22px;
+  margin-bottom:15px;
+}
 .btn{
-    padding:15px 30px;
-    background:#c8a97e;
-    color:white;
-    border:none;
-    border-radius:30px;
-    margin-top:20px;
+  margin-top:25px;
+  padding:12px 28px;
+  border:none;
+  border-radius:30px;
+  background:#b08a6a;
+  color:#fff;
+  font-size:15px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.2);
 }
 
-/* Section */
+/* CONTENT */
+.content{
+  position:absolute;
+  width:100%;
+  height:100%;
+  overflow-y:auto;
+  scroll-behavior:smooth;
+  display:none;
+}
 .section{
-    min-height:100vh;
-    padding:40px 20px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    text-align:center;
-    position:relative;
+  min-height:100vh;
+  padding:45px 25px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+h2{
+  font-family:'Playfair Display',serif;
+  margin-bottom:15px;
+}
+.names{
+  font-family:'Great Vibes';
+  font-size:34px;
+}
+.fade{
+  opacity:0;
+  transform:translateY(40px);
+  animation:fadeUp 1.2s forwards;
+}
+@keyframes fadeUp{
+  to{opacity:1;transform:translateY(0);}
 }
 
-/* Prewed */
+/* PREWED BG */
 .prewed{
-    background:url('https://drive.google.com/uc?export=view&id=1b6tvFFAAfKwIuHIp6xOjSj7Z3KjwXIZh') center/cover no-repeat;
-    color:white;
+  background:url("https://drive.google.com/uc?export=view&id=1b6tvFFAAfKwIuHIp6xOjSj7Z3KjwXIZh") center/cover;
+  color:#fff;
+  position:relative;
 }
 .prewed::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,0.5);
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
 }
 .prewed *{position:relative;}
 
-/* Countdown */
+/* COUNTDOWN */
 .countdown{
-    font-size:22px;
-    margin-top:10px;
+  margin:20px 0;
+  font-size:18px;
 }
 
-/* Maps */
-.maps{
-    margin-top:20px;
-    padding:12px 25px;
-    background:#c8a97e;
-    color:white;
-    text-decoration:none;
-    border-radius:25px;
+/* FORM */
+input,textarea{
+  width:100%;
+  padding:10px;
+  margin:6px 0;
+  border-radius:10px;
+  border:1px solid #ccc;
 }
 
-/* Flower */
-.flower{
-    position:fixed;
-    top:-50px;
-    font-size:20px;
-    animation:fall linear infinite;
-}
-@keyframes fall{
-    to{transform:translateY(110vh) rotate(360deg);}
-}
+/* MUSIC */
+audio{display:none;}
 
-/* Guest form */
-iframe{
-    width:100%;
-    height:500px;
-    border:none;
-}
 </style>
-
 </head>
-
 <body>
 
+<div class="app">
+
 <audio id="music" loop>
-<source src="MUSIK_LINK_KAMU">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5f8e3e9b9e.mp3">
 </audio>
 
 <div class="cover" id="cover">
-    <h1>Wedding of<br>Nabiel & Zaskia</h1>
-    <p>Yth Bapak/Ibu/Saudara/i</p>
-    <button class="btn" onclick="start()">Buka Undangan</button>
+  <div class="script">Wedding Of</div>
+  <div class="title">Nabiel & Zaskia</div>
+  <p id="guestText">Yth. Bapak/I/Saudara/i</p>
+  <button class="btn" onclick="openInvite()">Buka Undangan</button>
 </div>
 
-<div id="content" style="display:none">
+<div class="content" id="content">
 
 <div class="section">
-<p>
-"Dan di antara tanda-tanda kekuasaan-Nya Dia menciptakan pasangan untukmu agar kamu merasa tenteram, dan dijadikan-Nya kasih dan sayang di antara kamu."<br>
-(QS. Ar-Rum:21)
-</p>
+  <div class="fade">
+    <h2>QS. Ar-Rum:21</h2>
+    <p>Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan pasangan hidup agar kamu merasa tenteram dan dijadikan-Nya kasih dan sayang di antara kamu.</p>
+  </div>
 </div>
 
 <div class="section prewed">
-<p>Mohon doa restu untuk pernikahan kami:</p>
-
-<h3>Muhammad Nabiel</h3>
-<p>Putra dari Bapak Nanda Adrian Sinuhaji & Ibu Salma Setia Ningrum</p>
-
-<p>dan</p>
-
-<h3>Zaskia Putri Levina</h3>
-<p>Putri dari Bapak Nabil Basalamah & Ibu Nina Maulida</p>
+  <div class="fade">
+    <p>Mohon doa restu</p>
+    <div class="names">Muhammad Nabiel</div>
+    <p>Putra dari<br>Bapak Nanda Adrian Sinuhaji & Ibu Salma Setia Ningrum</p>
+    <p>dan</p>
+    <div class="names">Zaskia Putri Levina</div>
+    <p>Putri dari<br>Bapak Nabil Basalamah & Ibu Nina Maulida</p>
+  </div>
 </div>
 
 <div class="section">
-<h2>Akad Nikah</h2>
-<p>Kamis, 26 Februari 2026<br>
-10:00 WIB - Selesai<br>
-Ruang Meeting SMK</p>
-
-<div class="countdown" id="countdown"></div>
-
-<a class="maps" href="https://www.google.com/maps?q=-6.310409,107.087168" target="_blank">
-Buka Lokasi
-</a>
+  <div class="fade">
+    <h2>Akad Nikah</h2>
+    <p>Kamis, 26 Februari 2026<br>
+    10.00 WIB - Selesai<br>
+    Ruang Meeting SMK</p>
+    <div class="countdown" id="countdown"></div>
+    <a href="https://www.google.com/maps?q=-6.310409,107.087168" target="_blank">
+      <button class="btn">Buka Google Maps</button>
+    </a>
+  </div>
 </div>
 
 <div class="section">
-<h2>Buku Tamu</h2>
-<iframe src="FORM_LINK"></iframe>
+  <div class="fade">
+    <h2>Buku Tamu</h2>
+    <input id="name" placeholder="Nama">
+    <textarea id="msg" placeholder="Ucapan & Doa"></textarea>
+    <button class="btn" onclick="saveGuest()">Kirim</button>
+    <div id="list"></div>
+  </div>
 </div>
 
 <div class="section">
-<p>Terima kasih atas doa dan kehadirannya.</p>
+  <div class="fade">
+    <h2>Terima Kasih</h2>
+    <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/I/Saudara/i berkenan hadir dan memberikan doa restu.</p>
+    <br>
+    <div class="names">Nabiel & Zaskia</div>
+  </div>
 </div>
 
+</div>
 </div>
 
 <script>
-function start(){
-    document.getElementById("cover").style.display="none";
-    document.getElementById("content").style.display="block";
-    document.getElementById("music").play();
-    autoScroll();
+
+/* Nama tamu otomatis */
+const params = new URLSearchParams(window.location.search);
+const guest = params.get("to");
+if(guest){
+  document.getElementById("guestText").innerHTML="Yth. "+decodeURIComponent(guest);
 }
 
-/* Auto scroll cinematic */
-function autoScroll(){
-    setInterval(()=>{
-        window.scrollBy(0,0.5);
-    },10);
+/* Open cover */
+function openInvite(){
+  document.getElementById("cover").classList.add("open");
+  document.getElementById("content").style.display="block";
+  document.getElementById("music").play();
+
+  let c=document.getElementById("content");
+  let s=0;
+  setInterval(()=>{
+    s+=0.4;
+    c.scrollTop=s;
+  },20);
 }
 
 /* Countdown */
-let target = new Date("Feb 26, 2026 10:00:00").getTime();
+let target=new Date("Feb 26, 2026 10:00:00").getTime();
 setInterval(()=>{
-    let now = new Date().getTime();
-    let d = target-now;
-    let days=Math.floor(d/(1000*60*60*24));
-    let h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
-    let m=Math.floor((d%(1000*60*60))/(1000*60));
-    document.getElementById("countdown").innerHTML=
-    days+" Hari "+h+" Jam "+m+" Menit";
+  let now=new Date().getTime();
+  let d=target-now;
+  let hari=Math.floor(d/(1000*60*60*24));
+  let jam=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+  let menit=Math.floor((d%(1000*60*60))/(1000*60));
+  document.getElementById("countdown").innerHTML=
+  hari+" Hari "+jam+" Jam "+menit+" Menit";
 },1000);
 
-/* Flower animation */
-function flower(){
-    let f=document.createElement("div");
-    f.className="flower";
-    f.innerHTML="🌸";
-    f.style.left=Math.random()*100+"vw";
-    f.style.animationDuration=(5+Math.random()*5)+"s";
-    document.body.appendChild(f);
-    setTimeout(()=>f.remove(),10000);
+/* Buku tamu */
+function saveGuest(){
+  let n=document.getElementById("name").value;
+  let m=document.getElementById("msg").value;
+  if(!n)return;
+  let data=JSON.parse(localStorage.getItem("guest")||"[]");
+  data.push({n,m});
+  localStorage.setItem("guest",JSON.stringify(data));
+  showGuest();
 }
-setInterval(flower,500);
+function showGuest(){
+  let data=JSON.parse(localStorage.getItem("guest")||"[]");
+  let html="";
+  data.forEach(g=>{
+    html+=`<p><b>${g.n}</b><br>${g.m}</p><hr>`;
+  });
+  document.getElementById("list").innerHTML=html;
+}
+showGuest();
+
 </script>
 
 </body>
