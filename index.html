@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Wedding of Nabiel & Zaskia</title>
+  <style>
+    :root {
+      --bg: #0f1021;
+      --gold: #f6d9a3;
+      --soft: #f7f1e5;
+      --accent: #d8a86b;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      background: radial-gradient(circle at top, #1f2245, #0a0a13 65%);
+      color: var(--soft);
+      font-family: "Poppins", system-ui, -apple-system, sans-serif;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    .hidden { display: none !important; }
+
+    .cover {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      perspective: 1200px;
+      background: linear-gradient(150deg, #161832, #0b0d18);
+    }
+    .cover-card {
+      width: min(92vw, 420px);
+      border: 1px solid rgba(246, 217, 163, 0.35);
+      background: rgba(19, 20, 41, 0.72);
+      backdrop-filter: blur(6px);
+      border-radius: 22px;
+      padding: 28px 24px;
+      text-align: center;
+      transform-style: preserve-3d;
+      box-shadow: 0 26px 50px rgba(0, 0, 0, 0.4);
+      animation: floatCard 4.5s ease-in-out infinite;
+    }
+    .cover-card h1 {
+      font-family: "Times New Roman", serif;
+      color: var(--gold);
+      font-size: clamp(1.8rem, 7vw, 2.4rem);
+      margin: 0 0 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transform: translateZ(40px);
+    }
+    .cover-card p {
+      margin: 0 0 22px;
+      line-height: 1.6;
+      color: #fce7c3;
+      transform: translateZ(18px);
+    }
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 26px;
+      color: #241500;
+      background: linear-gradient(120deg, #f4e5c5, #c89154);
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      box-shadow: 0 10px 25px rgba(216, 168, 107, 0.35);
+      cursor: pointer;
+      transform: translateZ(28px);
+    }
+
+    #invitation {
+      opacity: 0;
+      transition: opacity .9s ease;
+      pointer-events: none;
+    }
+    #invitation.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .slide {
+      min-height: 100svh;
+      padding: 72px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .slide-content {
+      width: min(92vw, 520px);
+      background: rgba(8, 10, 23, 0.58);
+      border: 1px solid rgba(246, 217, 163, 0.38);
+      border-radius: 20px;
+      padding: 24px 18px;
+      backdrop-filter: blur(6px);
+    }
+    .prewed {
+      background-image: linear-gradient(rgba(8, 10, 23, 0.62), rgba(8, 10, 23, 0.8)),
+        url('https://drive.google.com/uc?export=view&id=1b6tvFFAAfKwIuHIp6xOjSj7Z3KjwXIZh');
+      background-size: cover;
+      background-position: center;
+      background-attachment: scroll;
+    }
+    h2 {
+      margin: 0 0 14px;
+      color: var(--gold);
+      font-family: "Times New Roman", serif;
+      font-size: clamp(1.5rem, 6vw, 2rem);
+    }
+    p {
+      line-height: 1.7;
+      margin: 0;
+      font-size: .98rem;
+    }
+
+    .countdown {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .time-box {
+      border-radius: 10px;
+      padding: 10px 5px;
+      background: rgba(246, 217, 163, 0.12);
+      border: 1px solid rgba(246, 217, 163, 0.26);
+    }
+    .time-box strong {
+      display: block;
+      font-size: 1.15rem;
+      color: var(--gold);
+    }
+
+    .map-link {
+      margin-top: 16px;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    form {
+      display: grid;
+      gap: 10px;
+      margin-top: 15px;
+      text-align: left;
+    }
+    input, textarea {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(246, 217, 163, 0.4);
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      padding: 10px;
+      font: inherit;
+    }
+    textarea { min-height: 90px; resize: vertical; }
+    .messages {
+      margin-top: 14px;
+      max-height: 220px;
+      overflow: auto;
+      text-align: left;
+      display: grid;
+      gap: 8px;
+    }
+    .msg {
+      border-left: 3px solid var(--accent);
+      background: rgba(255, 255, 255, 0.06);
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: .9rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px) scale(.98);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.show {
+      opacity: 1;
+      transform: none;
+    }
+
+    @keyframes floatCard {
+      0%,100% { transform: rotateY(-7deg) translateY(0px); }
+      50% { transform: rotateY(7deg) translateY(-8px); }
+    }
+  </style>
+</head>
+<body>
+  <section id="cover" class="cover">
+    <div class="cover-card">
+      <h1>Wedding of Nabiel &amp; Zaskia</h1>
+      <p>Yth kepada Bapak/i/Saudara/i:<br>Seluruh Dewan Tamu Undangan</p>
+      <button class="btn" id="openBtn">Buka Undangan</button>
+    </div>
+  </section>
+
+  <main id="invitation">
+    <section class="slide prewed">
+      <div class="slide-content reveal">
+        <h2>QS. Ar-Rum: 21</h2>
+        <p>“Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.”</p>
+      </div>
+    </section>
+
+    <section class="slide prewed">
+      <div class="slide-content reveal">
+        <p>Mohon do'a restu<br>semoga anugerah dan rahmat Allah SWT. senantiasa tercurah dan menuntun bahtera hidup pernikahan kami:</p>
+      </div>
+    </section>
+
+    <section class="slide prewed">
+      <div class="slide-content reveal">
+        <p>Mempelai Pria<br><strong>Muhammad Nabiel</strong><br>putra dari<br>Bapak Nanda Adrian Sinuhaji dan Ibu Salma Setia Ningrum<br><br>dan<br><br>Mempelai Perempuan<br><strong>Zaskia Putri Levina</strong><br>Putri dari<br>Bapak Nabil Basalamah dan Ibu Nina Maulida</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-content reveal">
+        <h2>Akad Nikah</h2>
+        <p>Kamis, 26 Februari 2026<br>10:00 - selesai<br>Ruang Meeting SMK</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-content reveal">
+        <h2>Menuju Hari Bahagia</h2>
+        <div class="countdown" id="countdown">
+          <div class="time-box"><strong id="days">0</strong>Hari</div>
+          <div class="time-box"><strong id="hours">0</strong>Jam</div>
+          <div class="time-box"><strong id="minutes">0</strong>Menit</div>
+          <div class="time-box"><strong id="seconds">0</strong>Detik</div>
+        </div>
+        <a class="btn map-link" href="https://www.google.com/maps?q=-6.310409,107.087168" target="_blank" rel="noopener">Buka Google Maps</a>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-content reveal">
+        <h2>Buku Tamu & Ucapan</h2>
+        <form id="guestbookForm">
+          <input id="guestName" placeholder="Nama tamu" required />
+          <textarea id="guestWish" placeholder="Ucapan & doa" required></textarea>
+          <button type="submit" class="btn">Kirim</button>
+        </form>
+        <div class="messages" id="messages"></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-content reveal">
+        <h2>Terima Kasih</h2>
+        <p>Merupakan kehormatan bagi kami atas kehadiran dan doa restu Bapak/Ibu/Saudara/i.<br><br>Wassalamu'alaikum Warahmatullahi Wabarakatuh.</p>
+      </div>
+    </section>
+  </main>
+
+  <audio id="bgMusic" loop preload="auto" src="https://files.catbox.moe/3z6f6v.mp3"></audio>
+
+  <script>
+    const openBtn = document.getElementById('openBtn');
+    const cover = document.getElementById('cover');
+    const invitation = document.getElementById('invitation');
+    const bgMusic = document.getElementById('bgMusic');
+
+    openBtn.addEventListener('click', async () => {
+      cover.classList.add('hidden');
+      invitation.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      try { await bgMusic.play(); } catch (e) { console.log('Autoplay diblokir browser.'); }
+      startAutoScroll();
+    });
+
+    function startAutoScroll() {
+      const speed = 0.6;
+      const timer = setInterval(() => {
+        window.scrollBy(0, speed);
+        const reachedBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 2;
+        if (reachedBottom) clearInterval(timer);
+      }, 14);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const eventDate = new Date('2026-02-26T10:00:00+07:00').getTime();
+    const ids = ['days', 'hours', 'minutes', 'seconds'];
+    const updateCountdown = () => {
+      const now = Date.now();
+      const distance = eventDate - now;
+      if (distance <= 0) {
+        ids.forEach(id => document.getElementById(id).textContent = '0');
+        return;
+      }
+      document.getElementById('days').textContent = Math.floor(distance / (1000 * 60 * 60 * 24));
+      document.getElementById('hours').textContent = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      document.getElementById('minutes').textContent = Math.floor((distance / 1000 / 60) % 60);
+      document.getElementById('seconds').textContent = Math.floor((distance / 1000) % 60);
+    };
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    const form = document.getElementById('guestbookForm');
+    const messagesBox = document.getElementById('messages');
+    const STORAGE_KEY = 'nabiel-zaskia-guestbook';
+
+    function renderMessages() {
+      const items = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      messagesBox.innerHTML = items.length ? items.map(item => `
+        <div class="msg"><strong>${escapeHtml(item.name)}</strong><br>${escapeHtml(item.wish)}</div>
+      `).join('') : '<div class="msg">Belum ada ucapan. Jadilah yang pertama ✨</div>';
+    }
+
+    function escapeHtml(value) {
+      const div = document.createElement('div');
+      div.textContent = value;
+      return div.innerHTML;
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('guestName').value.trim();
+      const wish = document.getElementById('guestWish').value.trim();
+      if (!name || !wish) return;
+      const items = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      items.unshift({ name, wish });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(items.slice(0, 100)));
+      form.reset();
+      renderMessages();
+    });
+
+    renderMessages();
+  </script>
+</body>
+</html>
